@@ -73,7 +73,7 @@
         <span class="rm-qual">in AIMC @ CSCW 2026</span>
       </span>
 
-      <h1>Broader Impacts of GenAI in Communication:<br>Building Agendas for <span class="mark">Research, Design,</span> and <span class="mark">Policymaking</span></h1>
+      <h1>Broader Impacts of GenAI in Communication: Building Agendas for <span class="mark">Research, Design,</span> and <span class="mark">Policymaking</span></h1>
 
       <p class="venue">@CSCW 2026 | Salt Lake City, Utah</p>
 
@@ -359,6 +359,55 @@
   }, { passive: true });
 
   update();
+})();
+
+// Blocks rise as they arrive. Positions are swept in the scroll frame
+// rather than watched with an IntersectionObserver: a fast flick or an
+// anchor jump can carry an element from below the fold to above it
+// between two observer samples, leaving it stranded invisible.
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var pending = Array.prototype.slice.call(document.querySelectorAll(
+    '.section h2, .section h3, .prose, .ripple, .track, .format, ' +
+    '.timeline li, .member, .apply-wrap'));
+  if (!pending.length) return;
+
+  pending.forEach(function (el) { el.classList.add('rise'); });
+
+  var batch = 0;
+
+  function reveal(el) {
+    el.style.transitionDelay = Math.min(batch++, 4) * 60 + 'ms';
+    el.classList.add('in');
+    // Strip once arrived, so the transform stops competing with the
+    // card hover lift.
+    el.addEventListener('transitionend', function () {
+      el.classList.remove('rise', 'in');
+      el.style.transitionDelay = '';
+    }, { once: true });
+  }
+
+  function sweep() {
+    batch = 0;
+    var limit = window.innerHeight * 0.92;
+    for (var i = pending.length - 1; i >= 0; i--) {
+      if (pending[i].getBoundingClientRect().top < limit) {
+        reveal(pending[i]);
+        pending.splice(i, 1);
+      }
+    }
+  }
+
+  var queued = false;
+  window.addEventListener('scroll', function () {
+    if (queued || !pending.length) return;
+    queued = true;
+    requestAnimationFrame(function () { sweep(); queued = false; });
+  }, { passive: true });
+
+  window.addEventListener('resize', sweep);
+  sweep();
 })();
 </script>
 

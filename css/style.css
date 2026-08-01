@@ -276,7 +276,19 @@ body {
 /* ================= SECTIONS ================= */
 
 .section { padding: var(--s-section) 0; }
-.section + .section { border-top: 1px solid var(--line); }
+
+/* A hairline that fades out toward both edges, rather than a hard rule
+   running the full width. */
+.section + .section { position: relative; }
+
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent, var(--line) 22%, var(--line) 78%, transparent);
+}
 
 /* The largest and darkest thing in its section. */
 .section h2 {
@@ -535,8 +547,57 @@ a.inline {
 
 /* ================= FOOTER ================= */
 
-.foot { padding: 36px 0 46px; border-top: 1px solid var(--line); text-align: center; }
+.foot {
+  position: relative;
+  padding: 36px 0 46px;
+  text-align: center;
+}
+
+.foot::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent, var(--line) 22%, var(--line) 78%, transparent);
+}
 .foot p { color: var(--muted); font-size: var(--t-meta); }
+
+
+/* ================= MOTION =================
+
+   Two things move. The rings expand outward once on load, which is the
+   thing the workshop is named after. And blocks rise as they arrive, so
+   the page assembles rather than appearing. Both are gated behind
+   prefers-reduced-motion, and the reveal class is only ever applied by
+   script, so nothing is hidden if that never runs. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .ripple-field circle {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ripple-out 1.5s cubic-bezier(0.22, 0.72, 0.28, 1) both;
+  }
+
+  .ripple-field circle:nth-of-type(1) { animation-delay: 0.05s; }
+  .ripple-field circle:nth-of-type(2) { animation-delay: 0.16s; }
+  .ripple-field circle:nth-of-type(3) { animation-delay: 0.27s; }
+  .ripple-field circle:nth-of-type(4) { animation-delay: 0.38s; }
+  .ripple-field circle:nth-of-type(5) { animation-delay: 0.49s; }
+  .ripple-field circle:nth-of-type(6) { animation-delay: 0.60s; }
+
+  @keyframes ripple-out {
+    from { transform: scale(0.4); opacity: 0; }
+  }
+
+  .rise {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .rise.in { opacity: 1; transform: none; }
+}
 
 /* ================= INTERACTION ================= */
 
