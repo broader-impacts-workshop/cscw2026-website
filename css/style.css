@@ -48,7 +48,7 @@
   --t-hero: clamp(28px, 3.45vw, 43px);  /* two lines, the longer filling ~98% */
 
   /* --- space --------------------------------------------------- */
-  --s-section: 72px;   /* top and bottom, so 144px between sections */
+  --s-section: 92px;   /* top and bottom, so 184px between sections */
   --s-block: 44px;     /* between blocks within a section */
   --s-head: 26px;      /* a heading to its own content */
   --s-tight: 16px;
@@ -284,7 +284,7 @@ body {
 .section + .section::before {
   content: "";
   position: absolute;
-  top: -13px;
+  top: -14px;
   left: 50%;
   translate: -50%;
   width: 26px;
@@ -559,7 +559,7 @@ a.inline {
 .foot::before {
   content: "";
   position: absolute;
-  top: -13px;
+  top: -14px;
   left: 50%;
   translate: -50%;
   width: 26px;
@@ -650,7 +650,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     --t-h2: 26px;
     --t-h3: 21px;
     --t-h4: 18px;
-    --s-section: 52px;
+    --s-section: 62px;
     --s-block: 34px;
     --s-head: 22px;
   }
