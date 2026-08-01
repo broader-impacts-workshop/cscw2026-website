@@ -38,7 +38,10 @@
       <svg class="rm-glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="10"/></svg>
       <span class="rm-name">Ripples</span>
     </a>
-    <ul>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+    <ul id="nav-menu">
       <li><a href="#about">About</a></li>
       <li><a href="#themes">Themes</a></li>
       <li><a href="#participation"><span class="long">Call for Participation</span><span class="short">Apply</span></a></li>
@@ -265,6 +268,10 @@
           <span class="date">TBD</span>
           <span class="event"><b class="key">Rolling</b> statement of interest submissions close</span>
         </li>
+        <li class="undated">
+          <span class="date">TBD</span>
+          <span class="event"><b class="key">Rolling</b> decisions sent</span>
+        </li>
         <li class="arrival">
           <span class="date">Oct 10th, 2026 (AoE)</span>
           <span class="event">Workshop at CSCW 2026</span>
@@ -340,6 +347,44 @@
 </footer>
 
 <script>
+// The phone menu. The panel is collapsed in CSS at the breakpoint, so this
+// only ever flips a class — above the breakpoint the button is not rendered
+// and none of this can strand the links in a closed state.
+(function () {
+  var nav = document.querySelector('.nav');
+  var btn = nav && nav.querySelector('.nav-toggle');
+  if (!btn) return;
+
+  function set(open) {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
+  btn.addEventListener('click', function () {
+    set(!nav.classList.contains('open'));
+  });
+
+  // Tapping a link jumps within the same page, so the panel has to get out
+  // of the way itself — there is no navigation to close it.
+  nav.querySelectorAll('ul a').forEach(function (a) {
+    a.addEventListener('click', function () { set(false); });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (nav.classList.contains('open') && !nav.contains(e.target)) set(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); }
+  });
+
+  // Rotating to landscape can cross the breakpoint with the panel open.
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 640) set(false);
+  });
+})();
+
 // Marks the nav link for whichever section you are reading.
 (function () {
   var links = {};
@@ -416,6 +461,52 @@
 
   window.addEventListener('resize', sweep);
   sweep();
+})();
+
+// Organizer bios fold to three lines. Only bios that actually overflow get
+// a button, so short ones are left alone, and the fold is applied by script
+// so with JS off every bio is simply whole.
+(function () {
+  var members = Array.prototype.slice.call(document.querySelectorAll('.member'));
+  if (!members.length) return;
+
+  var CHEVRON = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+    '<path d="M5 9l7 7 7-7"/></svg>';
+
+  members.forEach(function (member, i) {
+    var bio = member.querySelector('.bio');
+    if (!bio) return;
+
+    // Measure unfolded, then decide whether folding buys anything.
+    var full = bio.scrollHeight;
+    member.classList.add('clamped');
+    if (full - bio.clientHeight < 24) {       // barely longer than the fold
+      member.classList.remove('clamped');
+      return;
+    }
+
+    bio.id = bio.id || 'bio-' + (i + 1);
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'bio-toggle';
+    btn.setAttribute('aria-controls', bio.id);
+    btn.innerHTML = CHEVRON;
+
+    function sync() {
+      var open = member.classList.contains('open');
+      btn.setAttribute('aria-label', open ? 'Show less of this bio' : 'Read the full bio');
+      btn.setAttribute('aria-expanded', String(open));
+    }
+
+    btn.addEventListener('click', function () {
+      member.classList.toggle('open');
+      sync();
+    });
+
+    bio.insertAdjacentElement('afterend', btn);
+    sync();
+  });
 })();
 </script>
 
