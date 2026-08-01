@@ -709,7 +709,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   /* Five links plus the full wordmark will not fit; the mark alone still
      identifies the site and is still the link home. */
-  .wordmark .rm-qual { display: none; }
 
   .nav ul { gap: 13px; }
   .nav ul a { font-size: 14px; padding: 8px 0; }
