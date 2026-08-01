@@ -45,7 +45,7 @@
   --t-h4: 19px;
   --t-h3: 24px;
   --t-h2: 32px;
-  --t-hero: clamp(30px, 4vw, 50px);
+  --t-hero: clamp(28px, 3.45vw, 43px);  /* two lines, the longer filling ~98% */
 
   /* --- space --------------------------------------------------- */
   --s-section: 72px;   /* top and bottom, so 144px between sections */
@@ -413,9 +413,20 @@ a.inline {
 
 /* ================= CALL FOR PARTICIPATION ================= */
 
-.formats { display: grid; gap: 24px; margin-top: var(--s-head); list-style: none; }
+/* The two formats are alternatives, so they sit side by side with a rule
+   between them rather than stacked behind accent bars. */
+.formats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  margin-top: var(--s-head);
+  list-style: none;
+}
 
-.format { padding-left: 24px; border-left: 2px solid var(--teal-line); }
+.format { padding: 0 38px; }
+.format:first-child { padding-left: 0; }
+.format:last-child { padding-right: 0; }
+.format + .format { border-left: 1px solid var(--line); }
 
 .format h4 {
   margin-bottom: 5px;
@@ -428,7 +439,7 @@ a.inline {
 .format p { line-height: 1.72; }
 .format strong { color: var(--ink); font-weight: 700; }
 
-.apply-wrap { margin-top: var(--s-block); }
+.apply-wrap { margin-top: var(--s-block); text-align: center; }
 
 .apply {
   display: inline-flex;
@@ -604,6 +615,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   .track { padding: 22px 22px 24px; }
   .track:hover { transform: none; }
+
+  .formats { grid-template-columns: 1fr; }
+  .format { padding: 0; }
+  .format + .format {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-top: 26px;
+    margin-top: 26px;
+  }
 
   .timeline { padding-left: 32px; }
   .timeline li { grid-template-columns: 1fr; gap: 3px; padding-bottom: 24px; }
