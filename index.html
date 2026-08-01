@@ -1,29 +1,307 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@600;700;800&family=Instrument+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Welcome to the CSCW 2026 workshop Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking!" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="[@CSCW 2026 workshop] Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking" />
-    <meta property="og:description" content="Welcome to the CSCW 2026 workshop Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking!" />
-    <meta property="og:image" content="./og-image.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="2008" />
-    <meta property="og:image:height" content="1308" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[@CSCW 2026 workshop] Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking" />
-    <meta name="twitter:description" content="Welcome to the CSCW 2026 workshop Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking!" />
-    <meta name="twitter:image" content="./og-image.jpg" />
-    <title>[@CSCW 2026 workshop] Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking</title>
-    <script type="module" crossorigin src="./assets/index-CtC6xzpd.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CkRB_5a4.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>[@CSCW 2026 workshop] Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking</title>
+<meta name="description" content="Welcome to the CSCW 2026 workshop Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking!">
+
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="canonical" href="https://broader-impacts-workshop.github.io/cscw2026-website/">
+
+<!-- Open Graph needs absolute URLs. A relative one is silently dropped by
+     most scrapers, which is why shared links had no preview image. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://broader-impacts-workshop.github.io/cscw2026-website/">
+<meta property="og:title" content="[@CSCW 2026 workshop] Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking">
+<meta property="og:description" content="Welcome to the CSCW 2026 workshop Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking!">
+<meta property="og:image" content="https://broader-impacts-workshop.github.io/cscw2026-website/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="2008">
+<meta property="og:image:height" content="1308">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[@CSCW 2026 workshop] Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking">
+<meta name="twitter:description" content="Welcome to the CSCW 2026 workshop Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking!">
+<meta name="twitter:image" content="https://broader-impacts-workshop.github.io/cscw2026-website/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@600;700;800&family=Instrument+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#participation"><span class="long">Call for Participation</span><span class="short">Participation</span></a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#organizers">Organizers</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="inner">
+      <p class="eyebrow">Ripples in AIMC @ CSCW 2026</p>
+      <img src="./assets/hero.png" alt="Ripples in AI-mediated communication" width="2048" height="558">
+
+      <h1>
+        <span class="strong">Broader Impacts of GenAI in Communication:</span><br>
+        Building Agendas for <span class="mark">Research, Design,</span> and<br>
+        <span class="mark">Policymaking</span>
+      </h1>
+
+      <p class="venue">@CSCW 2026 | Salt Lake City, Utah</p>
+
+      <div class="actions">
+        <a class="action primary" href="#participation">
+          <span>Submit Your Application</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v16"/><path d="M5 12l7 7 7-7"/></svg>
+        </a>
+        <a class="action secondary" href="./workshop-proposal.pdf" target="_blank" rel="noopener noreferrer">
+          <span>Workshop Proposal</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h16"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= OVERVIEW ================= -->
+  <section class="section" id="about">
+    <div class="inner">
+      <h2>Overview</h2>
+      <div class="prose">
+        <p>Welcome to the CSCW 2026 workshop <strong>Broader Impacts of GenAI in Communication: Building Agendas for Research, Design, and Policymaking</strong>! GenAI is increasingly integrated into a broad range of communicative activities &mdash; from drafting messages and creating content to summarizing and filtering the information people receive &mdash; and is now commonly used across settings ranging from interpersonal to social. Accordingly, the impacts of GenAI extend well beyond individual communication sessions, warranting a holistic examination.</p>
+
+        <p>What emergent impacts in AI-mediated communication (AIMC) constitute risks? And how can we act upon them? This workshop seeks to discuss what impacts constitute risks and build agendas of research, design, and policy for these emerging risks of GenAI use in communication. We focus on risks that are hard to attribute to a single bad actor or deployment decision, and that may only become apparent as they accumulate gradually across many subtle instances.</p>
+
+        <p>We welcome participants who are interested in or actively working on these open challenges, including those conducting empirical investigations, those designing GenAI-integrated systems, and those engaged in policy and governance work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THEMES ================= -->
+  <section class="section" id="themes">
+    <div class="inner">
+      <h2>Workshop Themes and Topics</h2>
+
+      <h3>Broader Impacts of GenAI in Communication</h3>
+      <div class="prose">
+        <p>Examples of broader impacts span several interconnected dimensions, including but not limited to:</p>
+      </div>
+
+      <ul class="topics spaced">
+        <li>Impacts on <strong>individual capacities</strong>
+          <ul class="subtopics">
+            <li>Cognitive: creativity, critical thinking, decision-making</li>
+            <li>Communication: writing, argumentation, reading comprehension, information literacy</li>
+            <li>Epistemic: epistemic autonomy, independent judgment, information seeking</li>
+          </ul>
+        </li>
+        <li>Impacts on <strong>relationships and communities</strong>
+          <ul class="subtopics">
+            <li>Authenticity, effort, and trust in communication</li>
+            <li>Community norms and expectations around AI use</li>
+            <li>Perceived sincerity and emotional connection</li>
+          </ul>
+        </li>
+        <li>Impacts on <strong>public discourse and beliefs</strong>
+          <ul class="subtopics">
+            <li>Attitude formation and belief shifts</li>
+            <li>Polarization and echo chambers</li>
+            <li>Susceptibility to persuasion and manipulation</li>
+          </ul>
+        </li>
+        <li>Impacts on <strong>ecosystems</strong>
+          <ul class="subtopics">
+            <li>Ownership and attribution of AI-generated content</li>
+            <li>AI slop and information quality degradation</li>
+            <li>Content authenticity and distinguishability</li>
+            <li>Valuation of creative work</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Agendas for Research, Design, and Policymaking</h3>
+
+      <div class="cards">
+        <div class="card">
+          <h4>Empirical Foundations</h4>
+          <ul>
+            <li>What do we know about the impacts of GenAI in communication?</li>
+            <li>What are the potential risks arising from these impacts?</li>
+            <li>What research methods and frameworks are effective for studying these impacts and emerging risks?</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4>Design Opportunities</h4>
+          <ul>
+            <li>How can GenAI tools be designed to prevent potential risks?</li>
+            <li>How can digital platforms be designed to respond to increasing GenAI adoption?</li>
+            <li>What designs and mechanisms can help preserve meaningful human engagement while mitigating the risks?</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4>Policy and Regulation</h4>
+          <ul>
+            <li>What new policies and regulations are needed? What can or should be considered under governance frameworks?</li>
+            <li>How should debatable topics, such as ownership and attribution of AI-generated content, be regulated?</li>
+            <li>How to create accountability structures for consequences that are hard to attribute to any single stakeholder?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CALL FOR PARTICIPATION ================= -->
+  <section class="section" id="participation">
+    <div class="inner">
+      <h2>Call for Participation</h2>
+
+      <div class="prose">
+        <p>You are welcome to apply through one of two submission formats:</p>
+      </div>
+
+      <ul class="topics spaced">
+        <li><strong>Short Paper:</strong> A short paper (up to 4 pages, 2-column <a class="inline" href="https://www.acm.org/publications/proceedings-template" target="_blank" rel="noopener noreferrer">ACM format</a>, excluding references) presenting work and positions related to the impacts of GenAI use in communication. Short papers may have <strong>multiple authors</strong>. Work-in-progress and encore submissions are welcome. All submissions will be reviewed by the organizing team, with selection guided by our commitment to assembling a group that reflects a diversity of disciplines, experiences, and perspectives. If accepted, <strong>at least one author</strong> need to present the work. Accepted short papers will be published on our workshop website.</li>
+
+        <li><strong>Statement of Interest:</strong> A <strong>single-author</strong> brief statement (1-2 pages) expressing your interest in the impacts of GenAI use in communication with concrete examples, outlining your reasons for joining the workshop, questions you want to explore, and a short bio highlighting your background or current work.</li>
+      </ul>
+
+      <div class="apply-wrap">
+        <a class="apply" href="https://forms.gle/mUnEWSmpQoMvDQSYA" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">&#128196;</span>
+          <span>Apply Here</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TIMELINE ================= -->
+  <section class="section" id="timeline">
+    <div class="inner">
+      <h2>Timeline</h2>
+      <div class="timeline">
+        <div>
+          <span class="date">July 31th, 2026 (AoE)</span>
+          <span class="event">Deadline for submissions</span>
+        </div>
+        <div>
+          <span class="date">Aug 14th, 2026 (AoE)</span>
+          <span class="event">Decision notification</span>
+        </div>
+        <div>
+          <span class="date">Oct 10th, 2026 (AoE)</span>
+          <span class="event">Workshop @CSCW 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ORGANIZERS ================= -->
+  <section class="section" id="organizers">
+    <div class="inner">
+      <h2>Organizers</h2>
+      <div class="organizers">
+
+        <div class="person">
+          <a class="name" href="https://jzhi.app/" target="_blank" rel="noopener noreferrer">Jiayin Zhi</a>
+          <p class="affil">University of Chicago</p>
+          <p class="bio">Jiayin Zhi is a PhD student in Computer Science at the University of Chicago. Her research explores how to better evaluate human-AI systems, and investigates how GenAI influences the way people think and communicate by creating and evaluating GenAI systems. She focuses on reading and writing as the fundamental activities through which people engage with information.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="https://www.langaohci.com/" target="_blank" rel="noopener noreferrer">Lan Gao</a>
+          <p class="affil">University of Chicago</p>
+          <p class="bio">Lan Gao is a PhD student in Computer Science at the University of Chicago. Her research interests lie in the intersection of HCI, Trust and Safety, and AI Governance. Her recent work focuses on the governance of GenAI in the online information ecosystem, such as AI-generated content in online communities and on digital platforms.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="https://angelhwang.github.io/" target="_blank" rel="noopener noreferrer">Angel Hsing-Chi Hwang</a>
+          <p class="affil">University of Southern California</p>
+          <p class="bio">Angel Hsing-Chi Hwang (she/her) is a human-AI interaction (HAII) researcher and Assistant Professor of Communication and Computer Science at USC. Her work examines how conversational AI shapes social interactions in one-on-one and group contexts, and the downstream effects on social, emotional, and psychological well-being. Building on these insights, she also examines new approaches to responsible AI design and methods for studying its AI&rsquo;s long-term societal impacts.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="https://research.ibm.com/people/jessica-he" target="_blank" rel="noopener noreferrer">Jessica He</a>
+          <p class="affil">IBM Research</p>
+          <p class="bio">Jessica He is a UX Designer on the Trustworthy AI team at IBM Research. Her work investigates questions of authorship, accountability, and disclosure of AI usage in co-created work, as well as ways to identify and communicate risks of emerging AI technologies to diverse stakeholders.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="https://www.alexishiniker.com/" target="_blank" rel="noopener noreferrer">Alexis Hiniker</a>
+          <p class="affil">University of Washington</p>
+          <p class="bio">Alexis Hiniker is an Associate Professor of at UW Information School where she studies manipulative design and dark patterns. Her research has been cited in multiple U.S. state and federal congressional sessions, and she has provided subject-matter expertise to the White House, the U.S. Department of Justice, and the European Commission. She is a Jacobs Foundation Fellow, a Google Research Scholar, a former advisor to the U.S. Federal Trade Commission, and a recipient of the SIGCHI Societal Impact Award.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="http://www.munmund.net/" target="_blank" rel="noopener noreferrer">Munmun De Choudhury</a>
+          <p class="affil">Georgia Tech</p>
+          <p class="bio">Munmun De Choudhury is J. Z. Liang Professor at Georgia Tech, whose work sits at the intersection of computational social science, HCI, and digital mental health. She develops approaches to understand and support mental well-being at scale, and contributes to global AI and public policy through advisory roles, including with the World Health Organization and other global initiatives. She is a recipient of the SIGCHI Societal Impact Award, a member of the SIGCHI Academy, and an ACM Distinguished Member.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="https://minalee-research.github.io/" target="_blank" rel="noopener noreferrer">Mina Lee</a>
+          <p class="affil">University of Chicago</p>
+          <p class="bio">Mina Lee is an Assistant Professor in the Computer Science and Data Science Institute at the University of Chicago. Her research examines the evolving relationship between people and AI, with a particular focus on writing, reading, and thinking with AI.</p>
+        </div>
+
+        <div class="person">
+          <a class="name" href="https://www.marshini.net/" target="_blank" rel="noopener noreferrer">Marshini Chetty</a>
+          <p class="affil">University of Chicago</p>
+          <p class="bio">Marshini Chetty is an Associate Professor in the Department of Computer Science at the University of Chicago where she directs the Amyoli Internet Research Laboratory (AIR lab). She specializes in human-computer interaction and usable privacy and security and has been actively studying how AI is being adopted in schools, scientific organizations, and AI governance more broadly.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="inner">
+    <p>&copy; 2026 CSCW 2026 Workshop on Broader Impacts of GenAI in Communication</p>
+  </div>
+</footer>
+
+<script>
+// Marks the nav link for whichever section you are reading.
+(function () {
+  var links = {};
+  document.querySelectorAll('.nav a[href^="#"]').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+
+  var ids = Object.keys(links).filter(function (id) { return document.getElementById(id); });
+  if (!ids.length) return;
+
+  function update() {
+    var line = window.innerHeight * 0.3;
+    var current = null;
+    ids.forEach(function (id) {
+      if (document.getElementById(id).getBoundingClientRect().top <= line) current = id;
+    });
+    ids.forEach(function (id) { links[id].classList.toggle('current', id === current); });
+  }
+
+  var queued = false;
+  window.addEventListener('scroll', function () {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { update(); queued = false; });
+  }, { passive: true });
+
+  update();
+})();
+</script>
+
+</body>
 </html>
