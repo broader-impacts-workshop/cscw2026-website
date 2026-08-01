@@ -211,44 +211,26 @@ body {
   transition: color 0.22s;
 }
 
-/* A single ripple opens beneath the label: an outline ring on hover, and
-   ring-plus-centre — the logo's own figure — for the section you are
-   actually in, so "here" and "hovered" never read the same. Drawn as two
-   pseudo-elements rather than one filled dot, which at this size looked
-   like a stray speck rather than a mark. */
-.nav ul a::after,
-.nav ul a::before {
+/* One dot under the label — the centre of the ripple, nothing around it.
+   The section you are in gets it solid; hovering any other link brings up
+   a lighter one, so the two states stay distinguishable. */
+.nav ul a::after {
   content: "";
   position: absolute;
   left: 50%;
+  bottom: 3px;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
   border-radius: 50%;
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1), opacity 0.35s;
-}
-
-/* Tucked up inside the link's own padding. Sat below it, the mark read as
-   a speck floating loose in the bar rather than as part of the label. */
-.nav ul a::after {
-  bottom: 2px;
-  width: 9px;
-  height: 9px;
-  margin-left: -4.5px;
-  border: 1.2px solid var(--teal);
-  transform: scale(0.3);
-}
-
-.nav ul a::before {
-  bottom: 5px;
-  width: 3px;
-  height: 3px;
-  margin-left: -1.5px;
   background: var(--teal);
-  transform: scale(0.2);
+  opacity: 0;
+  transform: scale(0.3);
+  transition: transform 0.34s cubic-bezier(0.2, 0.8, 0.3, 1), opacity 0.3s;
 }
 
 .nav ul a.current { color: var(--ink); }
-.nav ul a.current::after,
-.nav ul a.current::before { opacity: 1; transform: scale(1); }
+.nav ul a.current::after { opacity: 1; transform: scale(1); }
 .nav .short { display: none; }
 
 /* ================= HERO ================= */
@@ -775,7 +757,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @media (hover: hover) and (pointer: fine) {
   .nav ul a:hover { color: var(--ink); }
-  .nav ul a:hover::after { opacity: 1; transform: scale(1); }
+  .nav ul a:hover::after { opacity: 0.45; transform: scale(1); }
+  .nav ul a.current:hover::after { opacity: 1; }
   .wordmark:hover em { color: var(--teal-deep); }
   a.inline:hover { text-decoration-color: var(--teal); }
   .action.primary:hover, .apply:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
@@ -901,26 +884,17 @@ a, button { -webkit-tap-highlight-color: transparent; }
     font-size: 16px;
   }
 
-  /* Stacked, the marker belongs beside the label rather than under it. */
+  /* Stacked, the dot belongs beside the label rather than under it. */
   .nav ul a::after {
-    left: 0;
+    left: 2px;
     top: 50%;
     bottom: auto;
-    margin: -4.5px 0 0;
-    opacity: 1;
+    margin: -2.5px 0 0;
+    opacity: 0.28;
     transform: scale(1);
-    border-color: var(--teal-line);
   }
 
-  .nav ul a::before {
-    left: 4.5px;
-    top: 50%;
-    bottom: auto;
-    margin: -1.5px 0 0;
-  }
-
-  .nav ul a.current::after { border-color: var(--teal); }
-  .nav ul a.current::before { opacity: 1; transform: scale(1); }
+  .nav ul a.current::after { opacity: 1; }
 
   /* The field is drawn at 190vw, so on a phone every stroke is magnified
      against far less type. Thinner keeps it ambient. */
