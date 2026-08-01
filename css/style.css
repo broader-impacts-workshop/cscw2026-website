@@ -45,7 +45,7 @@
   --t-h4: 19px;
   --t-h3: 24px;
   --t-h2: 32px;
-  --t-hero: clamp(28px, 3.45vw, 43px);  /* two lines, the longer filling ~98% */
+  --t-hero: clamp(28px, 3.7vw, 46px);
 
   /* --- space --------------------------------------------------- */
   --s-section: 92px;   /* top and bottom, so 184px between sections */
