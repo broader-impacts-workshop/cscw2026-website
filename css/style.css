@@ -125,11 +125,10 @@ body {
 
 .rm-qual {
   font-family: var(--sans);
-  font-size: 0.46em;
+  font-size: 0.48em;
   font-weight: 700;
-  letter-spacing: 0.15em;
   color: var(--muted);
-  transform: translateY(-0.15em);
+  transform: translateY(-0.14em);
 }
 
 /* ================= HEADER ================= */
@@ -160,16 +159,32 @@ body {
   display: block;
   padding: 6px 0;
   color: var(--muted);
-  font-size: var(--t-meta);
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   text-decoration: none;
   white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  position: relative;
+  transition: color 0.22s;
 }
 
-.nav ul a.current { color: var(--ink); border-bottom-color: var(--teal); }
+/* The underline spreads from the middle outward, like everything else
+   here. Drawn as a pseudo-element so it can be animated; a border cannot. */
+.nav ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.34s cubic-bezier(0.22, 0.7, 0.3, 1);
+}
+
+.nav ul a.current { color: var(--ink); }
+.nav ul a.current::after { transform: scaleX(1); }
 .nav .short { display: none; }
 
 /* ================= HERO ================= */
@@ -203,13 +218,14 @@ body {
 }
 
 /* Resting values, which is what shows under reduced motion. --peak is the
-   same number, for the loop to animate up to. */
-.ripple-field circle:nth-of-type(1) { opacity: 0.46; --peak: 0.46; }
-.ripple-field circle:nth-of-type(2) { opacity: 0.39; --peak: 0.39; }
-.ripple-field circle:nth-of-type(3) { opacity: 0.32; --peak: 0.32; }
-.ripple-field circle:nth-of-type(4) { opacity: 0.25; --peak: 0.25; }
-.ripple-field circle:nth-of-type(5) { opacity: 0.19; --peak: 0.19; }
-.ripple-field circle:nth-of-type(6) { opacity: 0.14; --peak: 0.14; }
+   same number, for the loop to animate up to. Stroke thins as the rings
+   widen, the way a real ripple loses energy on its way out. */
+.ripple-field circle:nth-of-type(1) { opacity: 0.48; --peak: 0.48; stroke-width: 3.6; }
+.ripple-field circle:nth-of-type(2) { opacity: 0.41; --peak: 0.41; stroke-width: 3.0; }
+.ripple-field circle:nth-of-type(3) { opacity: 0.34; --peak: 0.34; stroke-width: 2.5; }
+.ripple-field circle:nth-of-type(4) { opacity: 0.26; --peak: 0.26; stroke-width: 2.1; }
+.ripple-field circle:nth-of-type(5) { opacity: 0.20; --peak: 0.20; stroke-width: 1.7; }
+.ripple-field circle:nth-of-type(6) { opacity: 0.14; --peak: 0.14; stroke-width: 1.4; }
 
 .hero .inner { position: relative; z-index: 1; }
 
@@ -233,9 +249,8 @@ body {
 
 .hero .venue {
   color: var(--muted);
-  font-size: var(--t-meta);
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.07em;
 }
 
 /* Fills the content width, like every other block on the page. */
@@ -644,6 +659,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @media (hover: hover) and (pointer: fine) {
   .nav ul a:hover { color: var(--ink); }
+  .nav ul a:hover::after { transform: scaleX(1); }
   .wordmark:hover em { color: var(--teal-deep); }
   a.inline:hover { text-decoration-color: var(--teal); }
   .action.primary:hover, .apply:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
@@ -663,7 +679,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
 }
 
 /* ================= TABLET ================= */
@@ -696,7 +712,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .wordmark .rm-qual { display: none; }
 
   .nav ul { gap: 13px; }
-  .nav ul a { font-size: 13px; padding: 8px 0; letter-spacing: 0.02em; }
+  .nav ul a { font-size: 14px; padding: 8px 0; }
   .nav .long { display: none; }
   .nav .short { display: inline; }
 
@@ -732,6 +748,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 480px) {
   :root { --t-body: 16px; }
   .inner { width: 90%; }
-  .nav ul { gap: 11px; }
-  .nav ul a { font-size: 12px; }
+  /* Larger link text has to be paid for out of the gaps at this width. */
+  .nav .inner { gap: 7px; }
+  .nav ul { gap: 6px; }
+  .nav ul a { font-size: 13px; }
+  .wordmark { font-size: 18px; }
 }
