@@ -587,7 +587,8 @@ a.inline {
 }
 
 .member .affil { margin-top: 1px; color: var(--muted); font-size: var(--t-meta); }
-.member .bio { margin-top: 11px; line-height: 1.68; }
+/* A step under body copy — these are supporting detail, not the page. */
+.member .bio { margin-top: 11px; font-size: 15.5px; line-height: 1.7; }
 
 /* ================= FOOTER ================= */
 
