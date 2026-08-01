@@ -127,8 +127,7 @@ body {
   font-family: var(--sans);
   font-size: 0.46em;
   font-weight: 700;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
+  letter-spacing: 0.15em;
   color: var(--muted);
   transform: translateY(-0.15em);
 }
@@ -199,18 +198,18 @@ body {
 .ripple-field circle {
   fill: none;
   stroke: var(--teal);
-  stroke-width: 1.6;
+  stroke-width: 1.8;
   vector-effect: non-scaling-stroke;
 }
 
 /* Resting values, which is what shows under reduced motion. --peak is the
    same number, for the loop to animate up to. */
-.ripple-field circle:nth-of-type(1) { opacity: 0.38; --peak: 0.38; }
-.ripple-field circle:nth-of-type(2) { opacity: 0.32; --peak: 0.32; }
-.ripple-field circle:nth-of-type(3) { opacity: 0.26; --peak: 0.26; }
-.ripple-field circle:nth-of-type(4) { opacity: 0.20; --peak: 0.20; }
-.ripple-field circle:nth-of-type(5) { opacity: 0.15; --peak: 0.15; }
-.ripple-field circle:nth-of-type(6) { opacity: 0.11; --peak: 0.11; }
+.ripple-field circle:nth-of-type(1) { opacity: 0.46; --peak: 0.46; }
+.ripple-field circle:nth-of-type(2) { opacity: 0.39; --peak: 0.39; }
+.ripple-field circle:nth-of-type(3) { opacity: 0.32; --peak: 0.32; }
+.ripple-field circle:nth-of-type(4) { opacity: 0.25; --peak: 0.25; }
+.ripple-field circle:nth-of-type(5) { opacity: 0.19; --peak: 0.19; }
+.ripple-field circle:nth-of-type(6) { opacity: 0.14; --peak: 0.14; }
 
 .hero .inner { position: relative; z-index: 1; }
 
@@ -508,48 +507,53 @@ a.inline {
   border: 2.5px solid var(--teal);
 }
 
+.timeline li.undated::before {
+  border-style: dashed;
+  border-color: var(--muted);
+}
+
+.timeline li.undated .date { color: var(--muted); }
+
 .timeline li.arrival::before {
   background: var(--amber);
   border-color: var(--amber);
   box-shadow: 0 0 0 6px var(--amber-wash);
 }
 
+/* Dates read as written — "July 31th, 2026 (AoE)" — not shouted in caps. */
 .timeline .date {
   color: var(--muted);
   font-size: var(--t-meta);
   font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .timeline .event {
   font-size: var(--t-h4);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.4;
   color: var(--ink);
 }
+
+/* Which round this is, carried by weight inside the line. */
+.timeline .key { font-weight: 700; }
 
 .timeline li.arrival .event { color: var(--amber); }
 
 /* A qualifier under the event, for rounds that need naming. */
 .timeline .sub {
   display: block;
-  margin-top: 2px;
+  max-width: 52ch;
+  margin-top: 5px;
   color: var(--muted);
   font-size: var(--t-meta);
   font-weight: 400;
+  line-height: 1.6;
   letter-spacing: 0;
   text-transform: none;
 }
 
-/* Sits with the timeline, indented to its text column. */
-.timeline-note {
-  margin-top: 26px;
-  padding-left: 38px;
-  color: var(--muted);
-  font-size: var(--t-meta);
-  line-height: 1.65;
-}
+
 
 /* ================= ORGANIZERS ================= */
 
@@ -722,7 +726,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   .timeline { padding-left: 32px; }
   .timeline li { grid-template-columns: 1fr; gap: 3px; padding-bottom: 24px; }
-  .timeline-note { padding-left: 32px; }
   .timeline li::before { left: -32px; width: 16px; height: 16px; }
 }
 
