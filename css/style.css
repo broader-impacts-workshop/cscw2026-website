@@ -1,18 +1,21 @@
 /* ---------------------------------------------------------------
    Ripples in AIMC — CSCW 2026 workshop
 
-   Type:    Instrument Sans throughout, with Instrument Serif reserved
-            for three places only — the wordmark, the hero title and the
-            section titles. Same designers, so they pair; used sparingly,
-            so the serif stays an event. Eight named sizes on a ~1.2
-            scale, down from the thirteen ad-hoc ones this had grown.
-   Colour:  teal carries the page; a muted amber marks the two places
-            worth singling out. Two greys, not four. Content sits on
-            white above a faintly cool ground so surfaces read as
-            raised rather than being outlined into existence.
-   Form:    each section takes the shape its content wants — the impact
-            dimensions radiate, the agendas are ruled columns, the
-            organizers are a roster. No section repeats another's form.
+   Type.   Lato throughout, including the page title. The serif is not a
+           heading style at all — it belongs to the word "Ripples", which
+           is the mark, and travels with it. "in AIMC" is the qualifier
+           and is set apart from the name so a future workshop can swap
+           it. Lato ships 100/300/400/700/900 and no 500 or 600, so
+           anything asking for those synthesises; the hierarchy here is
+           built from size, colour and case, with weight only 400 or 700.
+
+   Space.  One scale, and the rule that separation between sections must
+           read as clearly larger than separation within them. Sections
+           sit 144px apart; blocks inside a section, 44px.
+
+   Colour. Teal carries the page, a muted amber marks two things, and the
+           running text is dark enough to be read rather than skimmed
+           past. Warm paper, cool ink.
    --------------------------------------------------------------- */
 
 :root {
@@ -21,32 +24,36 @@
   --teal-deep: #05566d;
   --teal-line: rgba(9, 112, 139, 0.22);
   --teal-wash: rgba(9, 112, 139, 0.07);
-  --amber: #bf7a33;                /* the second note, used twice */
+  --amber: #bf7a33;
   --amber-wash: rgba(191, 122, 51, 0.14);
 
-  --ink: #2b3338;                  /* everything that is read */
-  --muted: #6d777c;                /* everything that is glanced at */
-  --line: rgba(43, 51, 56, 0.12);
+  --ink: #22292e;        /* headings, and anything emphasised */
+  --body: #4a545b;       /* running text — darker than before, to be read */
+  --muted: #7b858b;      /* dates, affiliations, nav at rest */
+  --line: rgba(34, 41, 46, 0.13);
 
-  --ground: #fdfbf7;               /* warm paper, cool ink */
-  --surface: #ffffff;              /* what sits on it */
+  --ground: #fefdfb;   /* barely warm, close to white */
+  --surface: #ffffff;
 
   /* --- type ---------------------------------------------------- */
-  --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sans: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
 
-  --t-xs: 13px;
-  --t-sm: 15px;
-  --t-body: 16.5px;   /* lists, bios — the step between meta and prose */
-  --t-base: 18px;
-  --t-md: 21px;
-  --t-lg: 27px;
-  --t-xl: 38px;
-  --t-hero: clamp(36px, 4.7vw, 60px);
+  --t-micro: 12px;   /* the one letterspaced label */
+  --t-meta: 14px;    /* nav, dates, affiliations, footer */
+  --t-body: 17px;    /* prose, lists, bios — one size, no near-misses */
+  --t-h4: 19px;
+  --t-h3: 24px;
+  --t-h2: 32px;
+  --t-hero: clamp(30px, 4vw, 50px);
 
-  /* --- measure ------------------------------------------------- */
-  --page: 1080px;
-  --measure: 56ch;
+  /* --- space --------------------------------------------------- */
+  --s-section: 72px;   /* top and bottom, so 144px between sections */
+  --s-block: 44px;     /* between blocks within a section */
+  --s-head: 26px;      /* a heading to its own content */
+  --s-tight: 16px;
+
+  --page: 1060px;
   --nav-h: 62px;
 }
 
@@ -60,10 +67,10 @@ html {
 
 body {
   background: var(--ground);
-  color: var(--ink);
+  color: var(--body);
   font-family: var(--sans);
-  font-size: var(--t-base);
-  line-height: 1.7;
+  font-size: var(--t-body);
+  line-height: 1.72;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,26 +78,69 @@ body {
 
 .inner { width: 88%; max-width: var(--page); margin: 0 auto; }
 
-/* Small letterspaced label — the hero eyebrow. */
 .label {
-  font-size: var(--t-xs);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--teal);
 }
 
-/* ================= HEADER =================
-   The workshop shortname now lives in the bar as a wordmark, so the bar
-   identifies the site instead of being four floating links. */
+
+/* ================= THE MARK =================
+
+   "Ripples" is the identity and carries the serif wherever it appears.
+   "in AIMC" is context, not name — set in the sans, small and spaced, so
+   the same lockup works for whatever the next one is in. Everything is
+   sized in em, so the whole mark scales from one font-size. */
+
+.ripples-mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.42em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.rm-glyph {
+  flex: none;
+  width: 1.05em;
+  height: 1.05em;
+  align-self: center;
+  margin-right: 0.06em;
+}
+
+.rm-glyph circle { fill: none; stroke: var(--teal); stroke-width: 1.7; }
+.rm-glyph circle:first-child { fill: var(--amber); stroke: none; }
+.rm-glyph circle:last-child { stroke: var(--teal-line); }
+
+.rm-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.rm-qual {
+  font-family: var(--sans);
+  font-size: 0.46em;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transform: translateY(-0.15em);
+}
+
+/* ================= HEADER ================= */
 
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   z-index: 100;
   width: 100%;
-  background: rgba(253, 251, 247, 0.88);
+  background: rgba(254, 253, 251, 0.9);
   backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--line);
 }
@@ -99,28 +149,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 22px;
   height: var(--nav-h);
 }
 
-.wordmark {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--serif);
-  font-size: var(--t-md);
-  line-height: 1;
-  color: var(--ink);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.wordmark em { font-style: italic; color: var(--teal); }
-
-.wm-ripple { flex: none; width: 22px; height: 22px; }
-.wm-ripple circle { fill: none; stroke: var(--teal); stroke-width: 1.6; }
-.wm-ripple circle:first-child { fill: var(--amber); stroke: none; }
-.wm-ripple circle:last-child { stroke: var(--teal-line); }
+.wordmark { font-size: 25px; }
 
 .nav ul { display: flex; gap: 26px; list-style: none; }
 
@@ -128,9 +161,9 @@ body {
   display: block;
   padding: 6px 0;
   color: var(--muted);
-  font-size: var(--t-sm);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-size: var(--t-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-decoration: none;
   white-space: nowrap;
   border-bottom: 2px solid transparent;
@@ -140,23 +173,19 @@ body {
 .nav ul a.current { color: var(--ink); border-bottom-color: var(--teal); }
 .nav .short { display: none; }
 
-/* ================= HERO =================
-   Words first: the title leads, and the illustration follows it rather
-   than sitting between the label and the headline as it used to. */
+/* ================= HERO ================= */
 
 .hero {
   position: relative;
   overflow: hidden;
-  padding: calc(var(--nav-h) + 84px) 0 84px;
+  padding: calc(var(--nav-h) + 78px) 0 var(--s-section);
   text-align: center;
 }
 
-/* The identity, at full size. Rings radiate from behind the title, fading
-   as they widen and running off the edges of the page — the impacts this
-   workshop studies are the ones that carry beyond the room. */
+/* The title sits at the epicentre. */
 .ripple-field {
   position: absolute;
-  top: calc(var(--nav-h) + 220px);
+  top: calc(var(--nav-h) + 210px);
   left: 50%;
   translate: -50% -50%;
   width: min(190vw, 1600px);
@@ -183,64 +212,60 @@ body {
 
 .hero .inner { position: relative; z-index: 1; }
 
-.hero .label { display: block; margin-bottom: 22px; }
+.hero .ripples-mark { font-size: 40px; margin-bottom: 26px; }
+.hero .rm-qual { color: var(--teal); }
 
+/* Sans, like everything else — the serif belongs to the mark, not to
+   headings. Size and weight carry this instead. */
+/* No cap — the title runs the full content width, so it lines up with the
+   sections below rather than sitting in a narrower well of its own. */
 .hero h1 {
-  max-width: 940px;
-  margin: 0 auto 22px;
-  text-wrap: balance;
-  font-family: var(--serif);
+  margin: 0 auto 20px;
   font-size: var(--t-hero);
-  font-weight: 400;
-  line-height: 1.14;
-  letter-spacing: -0.012em;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.022em;
   color: var(--ink);
 }
 
-.hero h1 .mark { color: var(--teal); font-style: italic; }
+.hero h1 .mark { color: var(--teal); }
 
 .hero .venue {
   color: var(--muted);
-  font-size: var(--t-sm);
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: var(--t-meta);
+  font-weight: 700;
+  letter-spacing: 0.07em;
 }
 
 .hero img {
   display: block;
   width: 100%;
-  max-width: 820px;
+  max-width: 800px;
   height: auto;
-  margin: 46px auto 0;
+  margin: 44px auto 0;
   border-radius: 18px;
 }
 
-.actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 46px;
-}
+.actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 44px; }
 
 .action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-width: 268px;
-  height: 56px;
+  gap: 11px;
+  min-width: 262px;
+  height: 54px;
   padding: 0 26px;
   border-radius: 12px;
   font-size: var(--t-body);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .action svg {
-  flex: none; width: 22px; height: 22px;
+  flex: none; width: 21px; height: 21px;
   fill: none; stroke: currentColor; stroke-width: 2.4;
   stroke-linecap: round; stroke-linejoin: round;
 }
@@ -250,175 +275,160 @@ body {
 
 /* ================= SECTIONS ================= */
 
-.section { padding: 84px 0; }
+.section { padding: var(--s-section) 0; }
 .section + .section { border-top: 1px solid var(--line); }
 
-.tracks-title { margin-top: 62px; }
-
+/* The largest and darkest thing in its section. */
 .section h2 {
-  margin-bottom: 34px;
-  font-family: var(--serif);
-  font-size: var(--t-xl);
-  font-weight: 400;
-  line-height: 1.16;
-  letter-spacing: -0.01em;
+  margin-bottom: var(--s-head);
+  font-size: var(--t-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
   color: var(--ink);
 }
 
+/* Clearly smaller, and teal, so it never competes with the h2 above it. */
 .section h3 {
-  margin: 0 0 22px;
-  font-size: var(--t-lg);
-  font-weight: 600;
+  margin: 0 0 var(--s-tight);
+  font-size: var(--t-h3);
+  font-weight: 700;
   line-height: 1.3;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.008em;
   color: var(--teal);
 }
 
-.prose { display: flex; flex-direction: column; gap: 20px; max-width: var(--measure); }
-.prose p { line-height: 1.75; }
-.prose strong { font-weight: 600; }
+/* No measure cap: a narrower column read as misalignment against the
+   full-width sections around it. */
+.prose { display: flex; flex-direction: column; gap: 18px; }
+.prose strong { color: var(--ink); font-weight: 700; }
 
 a.inline {
   color: var(--teal);
+  font-weight: 700;
   text-decoration: underline;
   text-decoration-color: var(--teal-line);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s;
 }
 
-/* ================= RIPPLES =================
-   Not cards. The four dimensions of impact widen outward, so each row
-   steps further right and its mark gains a ring — the figure literally
-   expands as you read down it. */
+/* ================= RIPPLES ================= */
 
-.ripples { margin-top: 40px; list-style: none; }
+.ripples { margin-top: var(--s-head); list-style: none; }
 
 .ripple {
   display: grid;
-  grid-template-columns: 74px 1fr;
-  gap: 26px;
-  padding: 26px 0 30px;
+  grid-template-columns: 70px 1fr;
+  gap: 24px;
+  padding: 24px 0 26px;
   border-top: 1px solid var(--line);
 }
 
-.ripple:first-child { border-top: none; padding-top: 6px; }
+.ripple:first-child { border-top: none; padding-top: 4px; }
 
-/* Each row sits further out than the one above it. */
 .ripple[data-ring="2"] { margin-left: 22px; }
 .ripple[data-ring="3"] { margin-left: 44px; }
 .ripple[data-ring="4"] { margin-left: 66px; }
 
-.ripple .mark { width: 74px; height: 74px; }
-
+.ripple .mark { width: 70px; height: 70px; }
 .ripple .mark circle { fill: none; stroke: var(--teal); stroke-width: 1.5; }
 .ripple .mark circle:first-child { fill: var(--amber); stroke: none; }
 
-/* A row shows only the rings it has reached. */
 .ripple[data-ring="1"] .mark circle:nth-of-type(n + 2),
 .ripple[data-ring="2"] .mark circle:nth-of-type(n + 3),
 .ripple[data-ring="3"] .mark circle:nth-of-type(n + 4) { display: none; }
 
-/* The outer rings fade, the way a ripple does. */
 .ripple .mark circle:nth-of-type(3) { stroke: rgba(9, 112, 139, 0.55); }
 .ripple .mark circle:nth-of-type(4) { stroke: rgba(9, 112, 139, 0.3); }
 
 .ripple h4 {
-  margin-bottom: 12px;
-  font-size: var(--t-md);
-  font-weight: 600;
-  line-height: 1.35;
+  margin-bottom: 10px;
+  font-size: var(--t-h4);
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--ink);
 }
 
-.ripple h4 strong { color: var(--teal); font-weight: 600; }
+.ripple h4 strong { font-weight: 700; }
 
-.ripple ul { display: flex; flex-direction: column; gap: 7px; list-style: none; }
-
-.ripple ul li {
-  position: relative;
-  padding-left: 18px;
-  font-size: var(--t-body);
-  line-height: 1.62;
-  color: var(--muted);
-}
+.ripple ul { display: flex; flex-direction: column; gap: 6px; list-style: none; }
+.ripple ul li { position: relative; padding-left: 17px; }
 
 .ripple ul li::before {
   content: "";
   position: absolute;
-  left: 0; top: 0.66em;
+  left: 0; top: 0.68em;
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--teal-line);
 }
 
-/* ================= AGENDA TRACKS =================
-   Three parallel lines of enquiry, so: three columns divided by rules.
-   No boxes — the rules do the separating. */
+/* ================= AGENDA TRACKS ================= */
+
+/* The two subsections of Themes are substantial blocks in their own right,
+   so they need real air between them — nearly a section's worth, but with
+   no rule, so they still read as belonging together. Needs the .section
+   prefix to outrank the generic h3 margin. */
+.section h3.tracks-title { margin-top: 78px; }
 
 .tracks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin-top: 34px;
+  gap: 20px;
+  align-items: stretch;   /* equal heights from content, not a fixed number */
+  margin-top: var(--s-head);
 }
 
-.track { padding: 0 30px; }
-.track:first-child { padding-left: 0; }
-.track:last-child { padding-right: 0; }
-.track + .track { border-left: 1px solid var(--line); }
+/* The one place cards are used, so they read as a device rather than as
+   the page's only texture. White on warm paper, lifting on hover. */
+.track {
+  padding: 26px 26px 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(34, 41, 46, 0.045);
+  transition: transform 0.26s, box-shadow 0.26s, border-color 0.26s;
+}
 
 .track h4 {
-  margin-bottom: 20px;
-  padding-bottom: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
   border-bottom: 2px solid var(--teal);
-  font-size: var(--t-md);
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: var(--t-h4);
+  font-weight: 700;
+  line-height: 1.32;
   color: var(--ink);
 }
 
-.track ul { display: flex; flex-direction: column; gap: 17px; list-style: none; }
-
-.track li {
-  position: relative;
-  padding-left: 26px;
-  font-size: var(--t-body);
-  line-height: 1.6;
-  color: var(--muted);
-}
+.track ul { display: flex; flex-direction: column; gap: 15px; list-style: none; }
+.track li { position: relative; padding-left: 25px; line-height: 1.62; }
 
 .track li::before {
   content: "\2192";
   position: absolute;
   left: 0; top: 0;
   color: var(--teal);
+  font-weight: 700;
 }
 
 /* ================= CALL FOR PARTICIPATION ================= */
 
-.formats { display: grid; gap: 26px; margin-top: 30px; max-width: 68ch; list-style: none; }
+.formats { display: grid; gap: 24px; margin-top: var(--s-head); list-style: none; }
 
-.format {
-  padding-left: 26px;
-  border-left: 2px solid var(--teal-line);
-}
-
-.format p {
-  font-size: var(--t-body);
-  line-height: 1.72;
-  color: var(--muted);
-}
+.format { padding-left: 24px; border-left: 2px solid var(--teal-line); }
 
 .format h4 {
-  margin-bottom: 6px;
-  font-size: var(--t-md);
-  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: var(--t-h4);
+  font-weight: 700;
+  line-height: 1.35;
   color: var(--ink);
 }
 
-.format strong { color: var(--ink); font-weight: 600; }
+.format p { line-height: 1.72; }
+.format strong { color: var(--ink); font-weight: 700; }
 
-.apply-wrap { margin-top: 40px; }
+.apply-wrap { margin-top: var(--s-block); }
 
 .apply {
   display: inline-flex;
@@ -430,38 +440,46 @@ a.inline {
   border: 2px solid var(--teal);
   border-radius: 12px;
   color: #fff;
-  font-size: var(--t-base);
-  font-weight: 600;
+  font-size: var(--t-body);
+  font-weight: 700;
   text-decoration: none;
   transition: background-color 0.2s, border-color 0.2s;
 }
 
 /* ================= TIMELINE ================= */
 
-.timeline { position: relative; margin-top: 34px; padding-left: 40px; list-style: none; }
+.timeline { position: relative; margin-top: var(--s-head); padding-left: 38px; list-style: none; }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 8px; top: 12px; bottom: 38px;
+  left: 8px; top: 11px; bottom: 34px;
   width: 2px;
   background: var(--teal-line);
 }
 
-.timeline li { position: relative; padding-bottom: 34px; }
+/* Date and what happens on it, side by side, aligned on the baseline. */
+.timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 208px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding-bottom: 28px;
+}
+
 .timeline li:last-child { padding-bottom: 0; }
 
 .timeline li::before {
   content: "";
   position: absolute;
-  left: -40px; top: 4px;
+  left: -38px; top: 2px;
   width: 18px; height: 18px;
   border-radius: 50%;
   background: var(--ground);
   border: 2.5px solid var(--teal);
 }
 
-/* The workshop day is the destination — the one other place amber goes. */
 .timeline li.arrival::before {
   background: var(--amber);
   border-color: var(--amber);
@@ -469,44 +487,30 @@ a.inline {
 }
 
 .timeline .date {
-  display: block;
   color: var(--muted);
-  font-size: var(--t-xs);
-  font-weight: 600;
-  letter-spacing: 0.11em;
+  font-size: var(--t-meta);
+  font-weight: 700;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
 .timeline .event {
-  display: block;
-  margin-top: 4px;
-  font-size: var(--t-md);
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: var(--t-h4);
+  font-weight: 700;
+  line-height: 1.4;
   color: var(--ink);
 }
 
 .timeline li.arrival .event { color: var(--amber); }
 
-/* ================= ORGANIZERS =================
-   A roster, not a grid of boxes. Ragged bio lengths stop reading as
-   broken alignment once there is no card edge to be ragged against. */
+/* ================= ORGANIZERS ================= */
 
-.roster {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 56px;
-  margin-top: 30px;
-}
+.roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 52px; margin-top: var(--s-head); }
 
-.member { padding: 26px 0 28px; border-top: 1px solid var(--line); }
-.member:nth-child(1), .member:nth-child(2) { border-top: none; padding-top: 4px; }
+.member { padding: 24px 0 26px; border-top: 1px solid var(--line); }
+.member:nth-child(1), .member:nth-child(2) { border-top: none; padding-top: 2px; }
 
-.member h4 {
-  font-size: var(--t-md);
-  font-weight: 600;
-  line-height: 1.3;
-}
+.member h4 { font-size: var(--t-h4); font-weight: 700; line-height: 1.35; }
 
 .member h4 a {
   color: var(--ink);
@@ -515,26 +519,13 @@ a.inline {
   transition: color 0.2s, border-color 0.2s;
 }
 
-/* Secondary to the name, so grey and in sentence case — teal caps had it
-   competing with the person it belongs to. */
-.member .affil {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: var(--t-sm);
-  font-weight: 400;
-}
-
-.member .bio {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: var(--t-body);
-  line-height: 1.68;
-}
+.member .affil { margin-top: 1px; color: var(--muted); font-size: var(--t-meta); }
+.member .bio { margin-top: 11px; line-height: 1.68; }
 
 /* ================= FOOTER ================= */
 
-.foot { padding: 40px 0 52px; border-top: 1px solid var(--line); text-align: center; }
-.foot p { color: var(--muted); font-size: var(--t-xs); letter-spacing: 0.04em; }
+.foot { padding: 36px 0 46px; border-top: 1px solid var(--line); text-align: center; }
+.foot p { color: var(--muted); font-size: var(--t-meta); }
 
 /* ================= INTERACTION ================= */
 
@@ -545,10 +536,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .nav ul a:hover { color: var(--ink); }
   .wordmark:hover em { color: var(--teal-deep); }
   a.inline:hover { text-decoration-color: var(--teal); }
-  .action.primary:hover,
-  .apply:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+  .action.primary:hover, .apply:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
   .action.secondary:hover { border-color: var(--teal); background: var(--teal-wash); }
   .member h4 a:hover { color: var(--teal); border-bottom-color: var(--teal-line); }
+
+  .track:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(9, 112, 139, 0.13);
+    border-color: var(--teal-line);
+  }
 }
 
 .action.primary:active, .apply:active { background: var(--teal-deep); border-color: var(--teal-deep); }
@@ -564,52 +560,59 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 940px) {
   .tracks { grid-template-columns: 1fr; }
-  .track { padding: 0; }
-  .track + .track { border-left: none; border-top: 1px solid var(--line); padding-top: 30px; margin-top: 30px; }
   .roster { grid-template-columns: 1fr; gap: 0; }
-  .member:nth-child(2) { border-top: 1px solid var(--line); padding-top: 26px; }
+  .member:nth-child(2) { border-top: 1px solid var(--line); padding-top: 24px; }
 }
 
 /* ================= PHONE ================= */
 
 @media (max-width: 768px) {
-  :root { --nav-h: 56px; --t-xl: 30px; --t-lg: 23px; --t-md: 19px; }
+  :root {
+    --nav-h: 56px;
+    --t-h2: 26px;
+    --t-h3: 21px;
+    --t-h4: 18px;
+    --s-section: 52px;
+    --s-block: 34px;
+    --s-head: 22px;
+  }
 
   .nav .inner { gap: 10px; }
+  .wordmark { font-size: 21px; }
+  .hero .ripples-mark { font-size: 28px; }
 
   /* Five links plus the full wordmark will not fit; the mark alone still
-     identifies the site, and it is still the link home. */
-  .wm-text { display: none; }
-  .wm-ripple { width: 21px; height: 21px; }
+     identifies the site and is still the link home. */
+  .wordmark .rm-qual { display: none; }
 
   .nav ul { gap: 13px; }
-  .nav ul a { font-size: 13px; padding: 8px 0; }
+  .nav ul a { font-size: 13px; padding: 8px 0; letter-spacing: 0.02em; }
   .nav .long { display: none; }
   .nav .short { display: inline; }
 
-  .hero { padding: calc(var(--nav-h) + 48px) 0 60px; }
-  .hero img { margin-top: 34px; border-radius: 14px; }
-  .actions { flex-direction: column; align-items: center; gap: 12px; margin-top: 36px; }
+  .hero { padding: calc(var(--nav-h) + 44px) 0 var(--s-section); }
+  .hero img { margin-top: 32px; border-radius: 14px; }
+  .actions { flex-direction: column; align-items: center; gap: 12px; margin-top: 34px; }
   .action { width: min(100%, 320px); }
 
-  .section { padding: 56px 0; }
-  .section h2 { margin-bottom: 26px; }
-
-  /* The stepped indent costs more than it conveys at this width. */
-  .ripple { grid-template-columns: 52px 1fr; gap: 18px; }
-  .ripple .mark { width: 52px; height: 52px; }
+  /* The stepped indent costs more room than it conveys at this width. */
+  .ripple { grid-template-columns: 48px 1fr; gap: 16px; }
+  .ripple .mark { width: 48px; height: 48px; }
   .ripple[data-ring="2"], .ripple[data-ring="3"], .ripple[data-ring="4"] { margin-left: 0; }
 
-  .timeline { padding-left: 34px; }
-  .timeline li::before { left: -34px; width: 16px; height: 16px; }
+  .section h3.tracks-title { margin-top: 52px; }
+
+  .track { padding: 22px 22px 24px; }
+  .track:hover { transform: none; }
+
+  .timeline { padding-left: 32px; }
+  .timeline li { grid-template-columns: 1fr; gap: 3px; padding-bottom: 24px; }
+  .timeline li::before { left: -32px; width: 16px; height: 16px; }
 }
 
 @media (max-width: 480px) {
+  :root { --t-body: 16px; }
   .inner { width: 90%; }
-  .nav ul { gap: 12px; }
+  .nav ul { gap: 11px; }
   .nav ul a { font-size: 12px; }
-
-  .ripple ul li, .track li { font-size: var(--t-body); }
-  .format p { font-size: 15.5px; }
-  .member .bio { font-size: 15.5px; }
 }
