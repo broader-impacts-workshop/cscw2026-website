@@ -199,16 +199,18 @@ body {
 .ripple-field circle {
   fill: none;
   stroke: var(--teal);
-  stroke-width: 1.4;
+  stroke-width: 1.6;
   vector-effect: non-scaling-stroke;
 }
 
-.ripple-field circle:nth-of-type(1) { opacity: 0.30; }
-.ripple-field circle:nth-of-type(2) { opacity: 0.25; }
-.ripple-field circle:nth-of-type(3) { opacity: 0.20; }
-.ripple-field circle:nth-of-type(4) { opacity: 0.155; }
-.ripple-field circle:nth-of-type(5) { opacity: 0.115; }
-.ripple-field circle:nth-of-type(6) { opacity: 0.08; }
+/* Resting values, which is what shows under reduced motion. --peak is the
+   same number, for the loop to animate up to. */
+.ripple-field circle:nth-of-type(1) { opacity: 0.38; --peak: 0.38; }
+.ripple-field circle:nth-of-type(2) { opacity: 0.32; --peak: 0.32; }
+.ripple-field circle:nth-of-type(3) { opacity: 0.26; --peak: 0.26; }
+.ripple-field circle:nth-of-type(4) { opacity: 0.20; --peak: 0.20; }
+.ripple-field circle:nth-of-type(5) { opacity: 0.15; --peak: 0.15; }
+.ripple-field circle:nth-of-type(6) { opacity: 0.11; --peak: 0.11; }
 
 .hero .inner { position: relative; z-index: 1; }
 
@@ -529,6 +531,26 @@ a.inline {
 
 .timeline li.arrival .event { color: var(--amber); }
 
+/* A qualifier under the event, for rounds that need naming. */
+.timeline .sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Sits with the timeline, indented to its text column. */
+.timeline-note {
+  margin-top: 26px;
+  padding-left: 38px;
+  color: var(--muted);
+  font-size: var(--t-meta);
+  line-height: 1.65;
+}
+
 /* ================= ORGANIZERS ================= */
 
 .roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 52px; margin-top: var(--s-head); }
@@ -579,21 +601,27 @@ a.inline {
    script, so nothing is hidden if that never runs. */
 
 @media (prefers-reduced-motion: no-preference) {
+  /* Rings keep emanating rather than settling after one pass. Seven
+     seconds a cycle, staggered so one is always on its way out while the
+     next is arriving — slow enough to read as ambient, not as a widget. */
   .ripple-field circle {
     transform-box: fill-box;
     transform-origin: center;
-    animation: ripple-out 1.5s cubic-bezier(0.22, 0.72, 0.28, 1) both;
+    animation: ripple-out 7s cubic-bezier(0.25, 0.6, 0.35, 1) infinite;
   }
 
-  .ripple-field circle:nth-of-type(1) { animation-delay: 0.05s; }
-  .ripple-field circle:nth-of-type(2) { animation-delay: 0.16s; }
-  .ripple-field circle:nth-of-type(3) { animation-delay: 0.27s; }
-  .ripple-field circle:nth-of-type(4) { animation-delay: 0.38s; }
-  .ripple-field circle:nth-of-type(5) { animation-delay: 0.49s; }
-  .ripple-field circle:nth-of-type(6) { animation-delay: 0.60s; }
+  .ripple-field circle:nth-of-type(1) { animation-delay: 0s; }
+  .ripple-field circle:nth-of-type(2) { animation-delay: -1.15s; }
+  .ripple-field circle:nth-of-type(3) { animation-delay: -2.3s; }
+  .ripple-field circle:nth-of-type(4) { animation-delay: -3.45s; }
+  .ripple-field circle:nth-of-type(5) { animation-delay: -4.6s; }
+  .ripple-field circle:nth-of-type(6) { animation-delay: -5.75s; }
 
   @keyframes ripple-out {
-    from { transform: scale(0.4); opacity: 0; }
+    0%   { transform: scale(0.42); opacity: 0; }
+    14%  { opacity: var(--peak); }
+    72%  { opacity: calc(var(--peak) * 0.55); }
+    100% { transform: scale(1.22); opacity: 0; }
   }
 
   .rise {
@@ -694,6 +722,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   .timeline { padding-left: 32px; }
   .timeline li { grid-template-columns: 1fr; gap: 3px; padding-bottom: 24px; }
+  .timeline-note { padding-left: 32px; }
   .timeline li::before { left: -32px; width: 16px; height: 16px; }
 }
 
