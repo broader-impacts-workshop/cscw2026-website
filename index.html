@@ -46,6 +46,7 @@
       <li><a href="#themes">Themes</a></li>
       <li><a href="#timeline">Timeline</a></li>
       <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#papers">Papers</a></li>
       <li><a href="#organizers">Organizers</a></li>
     </ul>
   </div>
@@ -312,6 +313,64 @@
     </div>
   </section>
 
+  <!-- ================= FEATURED SHORT PAPERS ================= -->
+  <section class="section" id="papers">
+    <div class="inner">
+      <h2>Featured Short Papers</h2>
+      <ol class="papers">
+        <li class="paper">
+          <h4><a href="papers/dear-professor-lukoff-genai-and-the-collapse-of.pdf" target="_blank" rel="noopener noreferrer">&ldquo;Dear Professor Lukoff&rdquo;: GenAI and the Collapse of Costly Signals in Communication</a></h4>
+          <p class="byline">Kai Lukoff (Santa Clara University)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/delegating-before-learning-where-generative-ai-sits-in.pdf" target="_blank" rel="noopener noreferrer">Delegating Before Learning: Where Generative AI Sits in Students&rsquo; Professional Communication</a></h4>
+          <p class="byline">Jared Ren, Soobin Cho (University of Washington)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/delivered-but-not-heard-ai-proxy-speech-in.pdf" target="_blank" rel="noopener noreferrer">Delivered but Not Heard: AI Proxy Speech in Power-Imbalanced Group Decision-Making</a></h4>
+          <p class="byline">Soohwan Lee, Kyungho Lee (UNIST)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/how-much-can-ai-understand-toward-ai-assisted.pdf" target="_blank" rel="noopener noreferrer">How Much Can AI Understand? Toward AI-Assisted Sensemaking of Collaborative Discussion in Groups with Shared History</a></h4>
+          <p class="byline">Soobin Cho, Mark Zachry, David W. McDonald (University of Washington)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/investigating-the-impacts-of-generative-ai-on-information.pdf" target="_blank" rel="noopener noreferrer">Investigating the Impacts of Generative AI on Information Seeking</a></h4>
+          <p class="byline">Alexi Orchard (University of Notre Dame), Shannon Lodoen (Embry&ndash;Riddle Aeronautical University)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/more-than-just-access-generative-ai-as-communication.pdf" target="_blank" rel="noopener noreferrer">More Than Just Access: Generative AI as Communication Intermediary for Blind and Low-Vision Users</a></h4>
+          <p class="byline">Protik Dey, Mohd Saifuzzaman, Taslima Akter (University of Texas at San Antonio)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/seeking-safety-through-generative-ai-to-navigate-abusive.pdf" target="_blank" rel="noopener noreferrer">Seeking Safety Through Generative AI to Navigate Abusive Situation</a></h4>
+          <p class="byline">Warda Ruheen Bristi (University of Louisiana at Lafayette; Bangladesh Institute of Governance and Management), Tamanna Motahar (University of Louisiana at Lafayette)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/sensemaking-as-artifact-accumulated-influence-in-ai-mediated.pdf" target="_blank" rel="noopener noreferrer">Sensemaking as Artifact: Accumulated Influence in AI-Mediated Information Environments</a></h4>
+          <p class="byline">Manling Yang, Remco Chang (Tufts University)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/the-advisor-in-the-room-ai-and-the.pdf" target="_blank" rel="noopener noreferrer">The Advisor in the Room: AI and the Quiet Loss of Confidants</a></h4>
+          <p class="byline">Monica Hegde, Aqueasha Martin-Hammond (Indiana University Indianapolis)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/the-assistant-erased-you-measuring-loss-of-authorship.pdf" target="_blank" rel="noopener noreferrer">The Assistant Erased You: Measuring Loss of Authorship Signals in AI-Mediated Communication</a></h4>
+          <p class="byline">Ushna Malik (University of Iowa), Moiz Sadiq Awan (Independent Researcher)</p>
+        </li>
+        <li class="paper">
+          <h4><a href="papers/the-conversation-you-can-t-leave-structural-harms.pdf" target="_blank" rel="noopener noreferrer">The Conversation You Can&rsquo;t Leave: Structural Harms of AI Companions for Korean Adolescents</a></h4>
+          <p class="byline">Do Won Park, Minji Bang (Ewha Womans University), Minyoung Joo (Seoul National University)</p>
+        </li>
+        <li class="paper">
+          <h4>The Landscape of AI-Generated Imagery on Social Media Feeds During the 2024 U.S. Presidential Election Campaign</h4>
+          <p class="byline">Jean M. Lee, Soham De (University of Washington), Tiziano Piccardi (Johns Hopkins University), Martin Saveski (University of Washington)</p>
+          <p class="on-request">Please contact the authors for the paper.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
   <!-- ================= ORGANIZERS ================= -->
   <section class="section" id="organizers">
     <div class="inner">
@@ -455,7 +514,7 @@
 
   var pending = Array.prototype.slice.call(document.querySelectorAll(
     '.section h2, .section h3, .prose, .ripple, .track, .format, ' +
-    '.timeline li, .member, .apply-wrap'));
+    '.timeline li, .paper, .member, .apply-wrap'));
   if (!pending.length) return;
 
   pending.forEach(function (el) { el.classList.add('rise'); });

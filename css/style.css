@@ -763,7 +763,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
   a.inline:hover { text-decoration-color: var(--teal); }
   .action.primary:hover, .apply:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
   .action.secondary:hover { border-color: var(--teal); background: var(--teal-wash); }
-  .member h4 a:hover { color: var(--teal); border-bottom-color: var(--teal-line); }
+  .member h4 a:hover,
+  .paper h4 a:hover { color: var(--teal); border-bottom-color: var(--teal-line); }
   .bio-toggle:hover { background: var(--teal-wash); border-color: var(--teal); }
 
   .track:hover {
@@ -775,7 +776,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 .action.primary:active, .apply:active { background: var(--teal-deep); border-color: var(--teal-deep); }
 .action.secondary:active { background: var(--teal-wash); }
-.member h4 a:active, a.inline:active { color: var(--teal); }
+.member h4 a:active, .paper h4 a:active, a.inline:active { color: var(--teal); }
 .bio-toggle:active { background: var(--teal-wash); border-color: var(--teal); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -991,6 +992,56 @@ a, button { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 760px) {
   .agenda li { grid-template-columns: 1fr; gap: 3px; padding: 13px 0; }
   .agenda .when { font-size: 13.5px; letter-spacing: 0.04em; }
+}
+
+/* ---------------------------------------------------------------
+   Featured short papers. Title over byline, on the same hairline
+   rhythm as the schedule above it.
+   --------------------------------------------------------------- */
+.papers {
+  margin-top: var(--s-head);
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.paper {
+  padding: 19px 0 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.paper h4 {
+  font-size: var(--t-h4);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.paper h4 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.paper .byline {
+  margin-top: 5px;
+  font-size: var(--t-meta);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* A paper we are not hosting: the note stands in for the title link. */
+.paper .on-request {
+  margin-top: 7px;
+  font-size: var(--t-meta);
+  font-style: italic;
+  color: var(--teal);
+}
+
+@media (max-width: 760px) {
+  .paper { padding: 16px 0 17px; }
+  .paper h4 { font-size: 17px; }
 }
 
 /* ================= NOTICE =================
