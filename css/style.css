@@ -1026,8 +1026,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 .paper .byline {
   margin-top: 5px;
-  font-size: var(--t-meta);
-  color: var(--muted);
+  font-size: 15.5px;
+  color: var(--ink);
   line-height: 1.6;
 }
 
