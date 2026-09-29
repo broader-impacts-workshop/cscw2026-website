@@ -941,7 +941,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   /* A step above the 14px metadata size: these are the thing people scan
      the section for, not a caption on it. */
   font-size: 15.5px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--ink);
   font-variant-numeric: tabular-nums;   /* the times line up as a column */
   white-space: nowrap;
@@ -953,8 +953,21 @@ a, button { -webkit-tap-highlight-color: transparent; }
   line-height: 1.5;
 }
 
+/* Main sessions want a semibold, but Lato ships 400 then jumps to 700 with
+   nothing between, so a 600 here would just resolve to 700. A hairline
+   stroke on the 400 thickens the stems to about where a real 600 lands. */
+.agenda li:not(.pause) .when,
+.agenda li:not(.pause) .what {
+  color: var(--ink);
+  -webkit-text-stroke: 0.32px currentColor;
+}
+
+/* The run-on detail and the chip keep their own weights. */
+.agenda .detail { -webkit-text-stroke-width: 0; }
+.agenda .soon { -webkit-text-stroke-width: 0; }
+
 /* What a session involves, run on after a colon. */
-.agenda .detail { color: var(--muted); }
+.agenda .detail { font-weight: 400; color: var(--muted); }
 .agenda .detail::before { content: ": "; }
 
 /* Programme still to be filled in. Marked rather than left blank, so an
@@ -992,7 +1005,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .notice p {
   max-width: 680px;
   margin: 0 auto;
-  padding: 30px 28px;
+  padding: 20px 28px;
   background: var(--surface);
   border: 1px solid var(--teal-line);
   border-radius: 2px;
@@ -1009,5 +1022,5 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 760px) {
   .hero:has(+ .notice) { padding-bottom: 26px; }
-  .notice p { padding: 24px 20px; font-size: 16px; }
+  .notice p { padding: 17px 20px; font-size: 16px; }
 }
