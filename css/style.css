@@ -953,14 +953,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
   line-height: 1.5;
 }
 
-/* What a session involves, under its own name. */
-.agenda .detail {
-  display: block;
-  margin-top: 3px;
-  font-size: var(--t-meta);
-  color: var(--muted);
-  line-height: 1.55;
-}
+/* What a session involves, run on after a colon. */
+.agenda .detail { color: var(--muted); }
+.agenda .detail::before { content: ": "; }
 
 /* Programme still to be filled in. Marked rather than left blank, so an
    empty slot reads as pending rather than as an oversight. */
